@@ -22,7 +22,7 @@
         <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Camp</a>
+        <a class="nav-link" href="<?php echo base_url(); ?>Admin/camps">Camp</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Package</a>
