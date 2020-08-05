@@ -12,6 +12,21 @@ class Admin extends CI_Controller
     {
         $this->load->view("admin/index");
     }
+
+    public function camps()
+    {
+        $this->load->view("admin/camps");
+    }
+
+    public function post_camp()
+    {
+        $this->load->view("admin/add_camps");
+    }
+
+    public function save_camp()
+    {
+        echo "post camp";
+    }
 }
 
 ?>
