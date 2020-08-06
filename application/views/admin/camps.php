@@ -37,9 +37,33 @@
                         </tr>
                     </thead>
                     <tbody>
+                    <?php if(count($camps)): ?>
+                        <?php $c = $this->uri->segment(3); ?>
+                        <?php foreach ($camps as $camp): ?>
+                        <tr>
+                            <td><?= ++$c; ?></td>
+                            <td><?php echo $camp->ctitle; ?></td>
+                            <td><?php echo $camp->cdate; ?></td>
+                            <td><?php echo $camp->price; ?></td>
+                            <td><?php echo $camp->day; ?></td>
+                            <td><?php echo $camp->night; ?></td>
+                            <td>
+                                <a href="<?= base_url(); ?>Admin/update_camp/<?=$camp->id ?>" class="btn btn-primary">
+                                    Edit
+                                </a>
+                            </td>
+                            <td>
+                                <a href="<?= base_url(); ?>Admin/delete_camp/<?=$camp->id ?>" class="btn btn-danger">
+                                    Delete
+                                </a>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php else: ?>
                         <tr>
                             <td colspan="7" class="text-center">No data found.</td>
                         </tr>
+                    <?php endif; ?>
                     </tbody>
                 </table>
             </div>
