@@ -23,6 +23,25 @@ class CampModel extends CI_model
                     ->get();
         return $q->result();
     }
+
+    public function get_data_byId($campId)
+    {
+        $q = $this->db->select()
+                    ->from('camp')
+                    ->where(['ID'=>$campId])
+                    ->get();
+        return $q->result();
+    }
+
+    public function delete_camp($campId)
+    {
+        return $this->db->delete('camp',['id'=>$campId]);
+    }
+    public function update_camp($campId,$post)
+    {
+        return $this->db->where(['id'=>$campId])
+                        ->update('camp',$post);
+    }
 }
 
 ?>
