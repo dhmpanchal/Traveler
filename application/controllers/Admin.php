@@ -7,6 +7,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model("CampModel", "campModel");
+        $this->load->model("packageModel", "packageModel");
     }
 
     public function index()
@@ -194,10 +195,46 @@ class Admin extends CI_Controller
         return redirect('Admin/camps');
       }
       else {
-          $this->session->set_flashdata('error','!Something is weong please try again...');
+          $this->session->set_flashdata('error','!Something is wrong please try again...');
           return redirect('Admin/camps');
       }
     }
+
+    public function package()
+    {
+        $this->load->view("admin/package");
+    }
+
+    public function post_package()
+    {
+        $this->load->view("admin/add_package");
+    }
+
+    public function save_package()
+    {
+       $pkg_title = $this->input->post('pkg_title');
+       $pkg_desc = $this->input->post('pkg_desc');
+       $price = $this->input->post('price');
+
+       $post_data = array(
+        'pkg_title' => $pkg_title,
+        'pkg_desc' => $pkg_desc,
+        'price' => $price,
+        
+    );
+
+      
+      if ($this->packageModel->create_package($post_data)) {
+          $this->session->set_flashdata('sucess','!package successfully created...');
+          return redirect('Admin/package');
+      }
+      else {
+          $this->session->set_flashdata('error','!Something is weong please try again...');
+          return redirect('Admin/package');
+      }
+    
+    }
+
 }
 
 ?>
