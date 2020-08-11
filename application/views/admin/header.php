@@ -25,7 +25,7 @@
         <a class="nav-link" href="<?php echo base_url(); ?>Admin/camps">Camp</a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#">Package</a>
+        <a class="nav-link" href="<?php echo base_url(); ?>Admin/package">Package</a>
       </li>
       <li class="nav-item">
         <a class="nav-link" href="#">Camp Date</a>
