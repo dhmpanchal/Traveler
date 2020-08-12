@@ -7,6 +7,7 @@ class Admin extends CI_Controller
     {
         parent::__construct();
         $this->load->model("CampModel", "campModel");
+        $this->load->model("packageModel", "packageModel");
     }
 
     public function index()
@@ -197,6 +198,36 @@ class Admin extends CI_Controller
           $this->session->set_flashdata('error','!Something is weong please try again...');
           return redirect('Admin/camps');
       }
+    }
+
+    //for package
+    public function package()
+    {
+        $this->load->library('pagination');
+        $config=[
+          'base_url' => base_url('Admin/package'),
+          'per_page' => 6,
+          'total_rows' => $this->packageModel->total_rows(),
+          'full_tag_open' => "<ul class='pagination'>",
+          'full_tag_close' => '</ul>',
+          'prev_tag_open' => '<li>',
+          'prev_tag_close' => '</li>',
+          'next_tag_open' => '<li>',
+          'next_tag_close' => '</li>',
+          'num_tag_open' => '<li>',
+          'num_tag_close' => '</li>',
+          'cur_tag_open' => '<li class="active"></li><a>',
+          'cur_tag_close' => '</a></li>'
+        ];
+        $this->pagination->initialize($config);
+        $data['pkgs'] = $this->packageModel->get_package($config['per_page'],$this->uri->segment(3));
+        $this->load->view("admin/package", $data);
+    }
+
+    public function post_package()
+    {
+      $data['campAll'] = $this->packageModel->get_all_camps();
+      $this->load->view("admin/add_package", $data);
     }
 }
 

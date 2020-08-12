@@ -24,6 +24,14 @@ class CampModel extends CI_model
         return $q->result();
     }
 
+    public function get_all_camps()
+    {
+        $q = $this->db->select()
+                    ->from('camp')
+                    ->get();
+        return $q->result();
+    }
+
     public function get_data_byId($campId)
     {
         $q = $this->db->select()
