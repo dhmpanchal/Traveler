@@ -229,6 +229,32 @@ class Admin extends CI_Controller
       $data['campAll'] = $this->packageModel->get_all_camps();
       $this->load->view("admin/add_package", $data);
     }
+
+    public function save_package()
+    {
+      $pkgTitle = $this->input->post("pkg_title");
+      $pkgDesc = $this->input->post("pkg_desc");
+      $pkgPrice = $this->input->post("price");
+      $pkgCamp = $this->input->post("camp_id");
+
+      $postData = array(
+        'pkg_title' => $pkgTitle,
+        'pkg_desc' => $pkgDesc,
+        'price' => $pkgPrice,
+        'camp_id' => $pkgCamp,
+        'created_at' => date('d-m-Y'),
+        'active' => 1
+      );
+
+      if ($this->packageModel->create_package($postData)) {
+        $this->session->set_flashdata('sucess','!Package successfully created...');
+        return redirect('Admin/package');
+      }
+      else {
+          $this->session->set_flashdata('error','!Something is weong please try again...');
+          return redirect('Admin/package');
+      }
+    }
 }
 
 ?>

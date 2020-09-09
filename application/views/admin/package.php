@@ -41,7 +41,14 @@
                         <tr>
                             <td><?= ++$c; ?></td>
                             <td><?php echo $pkg->pkg_title; ?></td>
-                            <td><?php echo $pkg->camp_id; ?></td>
+                            <td>
+                                <?php
+                                    // $this->load->model('packageModel');
+                                    // $pkgTitle = $this->packageModel->getPackageTitle($pkg->camp_id);
+                                    // echo $pkgTitle; 
+                                    echo $pkg->camp_id;
+                                ?>
+                            </td>
                             <td><?php echo $pkg->price; ?></td>
                             <td>
                                 <a href="<?= base_url(); ?>Admin/update_pkg/<?=$pkg->id ?>" class="btn btn-primary">
