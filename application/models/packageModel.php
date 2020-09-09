@@ -50,6 +50,18 @@ class packageModel extends CI_model
         return $this->db->where(['id'=>$pid])
                         ->update('package',$post);
     }
+
+    public function getPackageTitle($pid)
+    {
+        $q = $this->db->where(['id'=>$pid])
+                    ->get('package');
+        if ($q->num_rows()) {
+            return $q->row()->pkg_title;
+        }
+        else {
+            return False;
+        }
+    }
 }
 
 ?>
