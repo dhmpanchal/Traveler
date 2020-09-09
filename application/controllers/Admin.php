@@ -255,6 +255,56 @@ class Admin extends CI_Controller
           return redirect('Admin/package');
       }
     }
+
+    public function update_package($pId)
+    {
+      $data['getPackageById'] = $this->packagemodel->get_data_byId($pId);
+      $this->load->view("admin/edit_package", $data);
+    }
+
+    public function edit_package($pId)
+    {
+      $pkg_title = $this->input->post('pkg_title');
+       $pkg_desc = $this->input->post('pkg_desc');
+       $price = $this->input->post('price');
+       
+
+  
+      $post_data = array(
+          'pkg_title' => $pkg_title,
+          'pkg_desc' => $pkg_desc,
+          'price' => $price,
+          
+      );
+
+      if ($this->packagemodel->update_package($pId,$post_data)) {
+        $this->session->set_flashdata('sucess','!paclage successfully updated...');
+        return redirect('Admin/package');
+      }
+      else {
+          $this->session->set_flashdata('error','!Something is weong please try again...');
+          return redirect('Admin/package');
+      }
+    }
+
+    public function delete_package($pId)
+    {
+      if ($this->packagemodel->delete_package($pId)) {
+        $this->session->set_flashdata('sucess','!Package successfully deleted...');
+        return redirect('Admin/package');
+      }
+      else {
+          $this->session->set_flashdata('error','!Something is weong please try again...');
+          return redirect('Admin/package');
+      }
+
+}
+
+      public function campdate()
+      {
+          $this->load->view('admin/campdate');
+
+      }
 }
 
 ?>
