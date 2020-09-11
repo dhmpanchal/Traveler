@@ -256,17 +256,17 @@ class Admin extends CI_Controller
       }
     }
 
-    public function update_package($pId)
+    public function update_pkg($pId)
     {
-      $data['getPackageById'] = $this->packagemodel->get_data_byId($pId);
+      $data['getPackageById'] = $this->packageModel->get_data_byId($pId);
       $this->load->view("admin/edit_package", $data);
     }
 
     public function edit_package($pId)
     {
       $pkg_title = $this->input->post('pkg_title');
-       $pkg_desc = $this->input->post('pkg_desc');
-       $price = $this->input->post('price');
+      $pkg_desc = $this->input->post('pkg_desc');
+      $price = $this->input->post('price');
        
 
   
@@ -277,7 +277,7 @@ class Admin extends CI_Controller
           
       );
 
-      if ($this->packagemodel->update_package($pId,$post_data)) {
+      if ($this->packageModel->update_package($pId,$post_data)) {
         $this->session->set_flashdata('sucess','!paclage successfully updated...');
         return redirect('Admin/package');
       }
@@ -287,9 +287,9 @@ class Admin extends CI_Controller
       }
     }
 
-    public function delete_package($pId)
+    public function delete_pkg($pId)
     {
-      if ($this->packagemodel->delete_package($pId)) {
+      if ($this->packageModel->delete_package($pId)) {
         $this->session->set_flashdata('sucess','!Package successfully deleted...');
         return redirect('Admin/package');
       }
@@ -300,11 +300,10 @@ class Admin extends CI_Controller
 
 }
 
-      public function campdate()
-      {
-          $this->load->view('admin/campdate');
-
-      }
+    public function campdate()
+    {
+        $this->load->view('admin/campdate');
+    }
 }
 
 ?>

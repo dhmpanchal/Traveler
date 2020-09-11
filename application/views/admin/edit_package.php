@@ -1,5 +1,5 @@
 <?php include('header.php') ?>
-<?php foreach($getPackageId as $value): ?>
+<?php foreach($getPackageById as $value): ?>
 <div class="container">
     <h2 class="text-center">Edit Package</h2>
 
@@ -42,7 +42,7 @@
                     </div>
                 </div>
         
-                    <?php endif; ?>
+                    
                     </div>
                 </div>
                 <div class="row">
