@@ -7,6 +7,7 @@ class HomeController extends CI_Controller
     {
         parent::__construct();
         $this->load->model('UserModel', 'userModel');
+        $this->load->model('CampModel', 'campModel');
     }
 
     public function index()
@@ -72,7 +73,14 @@ class HomeController extends CI_Controller
 
     public function camp_list()
     {
-        $this->load->view("users/camp");
+        $data["camps"] = $this->campModel->get_all_camps();
+        $this->load->view("users/camp", $data);
+    }
+
+    public function camp_details($id)
+    {
+        $data["getcamp"] = $this->campModel->get_data_byId($id);
+        $this->load->view("users/camp_details", $data);
     }
 
     public function logout()
